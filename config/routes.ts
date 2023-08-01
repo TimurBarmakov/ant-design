@@ -11,17 +11,17 @@
  * @doc https://umijs.org/docs/guides/routes
  */
 export default [
-  {
-    path: '/welcome',
-    layout: false,
-    routes: [
-      {
-        name: 'login',
-        path: '/welcome',
-        component: './Welcome',
-      },
-    ],
-  },
+  // {
+  //   path: '/user',
+  //   layout: false,
+  //   routes: [
+  //     {
+  //       name: 'login',
+  //       path: '/user/login',
+  //       component: './User/Login',
+  //     },
+  //   ],
+  // },
   {
     path: '/welcome',
     name: 'welcome',
