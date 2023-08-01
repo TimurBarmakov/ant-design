@@ -29,6 +29,11 @@ export default [
     component: './Welcome',
   },
   {
+    name: 'login',
+    path: '/user/login',
+    component: './User/Login',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
