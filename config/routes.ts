@@ -26,7 +26,14 @@ export default [
     path: '/welcome',
     name: 'welcome',
     icon: 'smile',
-    component: './Welcome',
+    routes: [
+      {
+        name:'welcome',
+        path:'/welcome',
+        component: './Welcome',
+      }
+    ]
+    // component: './Welcome',
   },
   {
     path: '/admin',
