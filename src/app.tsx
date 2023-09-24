@@ -35,11 +35,11 @@ export async function getInitialState(): Promise<{
   const { location } = history;
   // if (location.pathname !== loginPath) {
   //   const currentUser = await fetchUserInfo();
-  //   return {
-  //     fetchUserInfo,
-  //     currentUser,
-  //     settings: defaultSettings as Partial<LayoutSettings>,
-  //   };
+    return {
+      // fetchUserInfo,
+      // currentUser,
+      settings: defaultSettings as Partial<LayoutSettings>,
+    };
   // }
   return {
     // fetchUserInfo,
