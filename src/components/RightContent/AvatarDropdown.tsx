@@ -16,30 +16,30 @@ export type GlobalHeaderRightProps = {
 
 export const AvatarName = () => {
   const { initialState } = useModel('@@initialState');
-  const { currentUser } = initialState || {};
-  return <span className="anticon">{currentUser?.name}</span>;
+  // const { currentUser } = initialState || {};
+  // return <span className="anticon">{currentUser?.name}</span>;
 };
 
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, children }) => {
   /**
    * 退出登录，并且将当前的 url 保存
    */
-  // const loginOut = async () => {
-  //   await outLogin();
-  //   const { search, pathname } = window.location;
-  //   const urlParams = new URL(window.location.href).searchParams;
-  //   /** 此方法会跳转到 redirect 参数所在的位置 */
-  //   const redirect = urlParams.get('redirect');
-  //   // Note: There may be security issues, please note
-  //   if (window.location.pathname !== '/user/login' && !redirect) {
-  //     history.replace({
-  //       pathname: '/user/login',
-  //       search: stringify({
-  //         redirect: pathname + search,
-  //       }),
-  //     });
-  //   }
-  // };
+  const loginOut = async () => {
+    await outLogin();
+    const { search, pathname } = window.location;
+    const urlParams = new URL(window.location.href).searchParams;
+    /** 此方法会跳转到 redirect 参数所在的位置 */
+    const redirect = urlParams.get('redirect');
+    // Note: There may be security issues, please note
+    if (window.location.pathname !== '/user/login' && !redirect) {
+      history.replace({
+        pathname: '/user/login',
+        search: stringify({
+          redirect: pathname + search,
+        }),
+      });
+    }
+  };
   const actionClassName = useEmotionCss(({ token }) => {
     return {
       display: 'flex',
@@ -57,20 +57,20 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
   });
   const { initialState, setInitialState } = useModel('@@initialState');
 
-  // const onMenuClick = useCallback(
-  //   (event: MenuInfo) => {
-  //     const { key } = event;
-  //     if (key === 'logout') {
-  //       flushSync(() => {
-  //         setInitialState((s) => ({ ...s, currentUser: undefined }));
-  //       });
-  //       // loginOut();
-  //       return;
-  //     }
-  //     history.push(`/account/${key}`);
-  //   },
-  //   [setInitialState],
-  // );
+  const onMenuClick = useCallback(
+    (event: MenuInfo) => {
+      const { key } = event;
+      if (key === 'logout') {
+        flushSync(() => {
+          setInitialState((s) => ({ ...s, currentUser: undefined }));
+        });
+        // loginOut();
+        return;
+      }
+      history.push(`/account/${key}`);
+    },
+    [setInitialState],
+  );
 
   const loading = (
     <span className={actionClassName}>
@@ -88,11 +88,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
     return loading;
   }
 
-  const { currentUser } = initialState;
+  // const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.name) {
-    return loading;
-  }
+  // if (!currentUser || !currentUser.name) {
+  //   return loading;
+  // }
 
   const menuItems = [
     ...(menu
@@ -123,7 +123,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
     <HeaderDropdown
       menu={{
         selectedKeys: [],
-        // onClick: onMenuClick,
+        onClick: onMenuClick,
         items: menuItems,
       }}
     >
