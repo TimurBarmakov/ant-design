@@ -20,17 +20,17 @@ export async function getInitialState(): Promise<{
   loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-  const fetchUserInfo = async () => {
-    try {
-      const msg = await queryCurrentUser({
-        skipErrorHandler: true,
-      });
-      return msg.data;
-    } catch (error) {
-      history.push(loginPath);
-    }
-    return undefined;
-  };
+  // const fetchUserInfo = async () => {
+  //   try {
+  //     const msg = await queryCurrentUser({
+  //       skipErrorHandler: true,
+  //     });
+  //     return msg.data;
+  //   } catch (error) {
+  //     history.push(loginPath);
+  //   }
+  //   return undefined;
+  // };
   // 如果不是登录页面，执行
   const { location } = history;
   // if (location.pathname !== loginPath) {
@@ -42,7 +42,7 @@ export async function getInitialState(): Promise<{
   //   };
   // }
   return {
-    fetchUserInfo,
+    // fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
