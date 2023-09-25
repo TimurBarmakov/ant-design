@@ -11,9 +11,9 @@ import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
-/**
- * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
- * */
+// /**
+//  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
+//  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
@@ -27,20 +27,20 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
-      // history.push(loginPath);
+      history.push(loginPath);
     }
     return undefined;
   };
   // 如果不是登录页面，执行
-  const { location } = history;
-  // if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
-    return {
-      fetchUserInfo,
-      currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
-    };
-  // }
+  // const { location } = history;
+//   if (location.pathname !== loginPath) {
+//     const currentUser = await fetchUserInfo();
+//     return {
+//       fetchUserInfo,
+//       currentUser,
+//       settings: defaultSettings as Partial<LayoutSettings>,
+//     };
+//   // }
   return {
     fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,
