@@ -16,33 +16,33 @@ const loginPath = '/user/login';
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  // currentUser?: API.CurrentUser;
-  // loading?: boolean;
-  // fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  currentUser?: API.CurrentUser;
+  loading?: boolean;
+  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-  // const fetchUserInfo = async () => {
-  //   try {
-  //     const msg = await queryCurrentUser({
-  //       skipErrorHandler: true,
-  //     });
-  //     return msg.data;
-  //   } catch (error) {
-  //     history.push(loginPath);
-  //   }
-  //   return undefined;
-  // };
+  const fetchUserInfo = async () => {
+    try {
+      const msg = await queryCurrentUser({
+        skipErrorHandler: true,
+      });
+      return msg.data;
+    } catch (error) {
+      // history.push(loginPath);
+    }
+    return undefined;
+  };
   // 如果不是登录页面，执行
   const { location } = history;
   // if (location.pathname !== loginPath) {
-  //   const currentUser = await fetchUserInfo();
+    const currentUser = await fetchUserInfo();
     return {
-      // fetchUserInfo,
-      // currentUser,
+      fetchUserInfo,
+      currentUser,
       settings: defaultSettings as Partial<LayoutSettings>,
     };
   // }
   return {
-    // fetchUserInfo,
+    fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
