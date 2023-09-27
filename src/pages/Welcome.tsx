@@ -14,18 +14,18 @@ const InfoCard: React.FC<{
   desc: string;
   href: string;
 }> = ({ title, href, index, desc }) => {
-  // const { useToken } = theme;
+  const { useToken } = theme;
   debugger
-  // const { token } = useToken();
+  const { token } = useToken();
 
   return (
     <div
       style={{
-        // backgroundColor: token.colorBgContainer,
-        // boxShadow: token.boxShadow,
+        backgroundColor: token.colorBgContainer,
+        boxShadow: token.boxShadow,
         borderRadius: '8px',
         fontSize: '14px',
-        // color: token.colorTextSecondary,
+        color: token.colorTextSecondary,
         lineHeight: '22px',
         padding: '16px 19px',
         minWidth: '220px',
@@ -58,7 +58,7 @@ const InfoCard: React.FC<{
         <div
           style={{
             fontSize: '16px',
-            // color: token.colorText,
+            color: token.colorText,
             paddingBottom: 8,
           }}
         >
@@ -68,7 +68,7 @@ const InfoCard: React.FC<{
       <div
         style={{
           fontSize: '14px',
-          // color: token.colorTextSecondary,
+          color: token.colorTextSecondary,
           textAlign: 'justify',
           lineHeight: '22px',
           marginBottom: 8,

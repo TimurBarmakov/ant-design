@@ -27,20 +27,20 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
-      // history.push(loginPath);
+      history.push(loginPath);
     }
     return undefined;
   };
   // 如果不是登录页面，执行
   const { location } = history;
-  // if (location.pathname !== loginPath) {
-  //   const currentUser = await fetchUserInfo();
-  //   return {
-  //     fetchUserInfo,
-  //     currentUser,
-  //     settings: defaultSettings as Partial<LayoutSettings>,
-  //   };
-  // }
+  if (location.pathname !== loginPath) {
+    const currentUser = await fetchUserInfo();
+    return {
+      fetchUserInfo,
+      currentUser,
+      settings: defaultSettings as Partial<LayoutSettings>,
+    };
+  }
   return {
     fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,
@@ -53,7 +53,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
-      // title: <AvatarName/>,
+      title: <AvatarName/>,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
@@ -65,9 +65,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      // if (!initialState?.currentUser && location.pathname !== loginPath) {
-      //   history.push(loginPath);
-      // }
+      if (!initialState?.currentUser && location.pathname !== loginPath) {
+        history.push(loginPath);
+      }
     },
     layoutBgImgList: [
       {
@@ -99,10 +99,10 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
-    // unAccessible: <div>unAccessible</div>,
+    unAccessible: <div>unAccessible</div>,
     // 增加一个 loading 的状态
     childrenRender: (children) => {
-      // if (initialState?.loading) return <PageLoading />;
+      if (initialState?.loading) return <PageLoading />;
       return (
         <>
           {children}
