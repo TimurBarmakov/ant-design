@@ -4,6 +4,7 @@ import { parse } from 'url';
 
 // mock tableListDataSource
 const genList = (current: number, pageSize: number) => {
+  debugger
   const tableListDataSource: API.RuleListItem[] = [];
 
   for (let i = 0; i < pageSize; i += 1) {
