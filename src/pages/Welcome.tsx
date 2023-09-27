@@ -15,7 +15,7 @@ const InfoCard: React.FC<{
   href: string;
 }> = ({ title, href, index, desc }) => {
   const { useToken } = theme;
-
+  debugger
   const { token } = useToken();
 
   return (
